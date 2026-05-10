@@ -12,6 +12,15 @@ import {
   setupDifficultySelector,
 } from './ui';
 
+function setupViewportTracking(): void {
+  const update = (): void => {
+    const vh = window.visualViewport?.height ?? window.innerHeight;
+    document.documentElement.style.setProperty('--visual-vh', `${vh}px`);
+  };
+  window.visualViewport?.addEventListener('resize', update);
+  update();
+}
+
 async function init(): Promise<void> {
   showScreen('loading-screen');
 
@@ -76,6 +85,7 @@ async function init(): Promise<void> {
   });
 
   showScreen('start-screen');
+  setupViewportTracking();
 }
 
 init();

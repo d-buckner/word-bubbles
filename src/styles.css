@@ -518,8 +518,32 @@ body {
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  /* Anchor content to top — prevents layout shift when soft keyboard opens */
+  /* Anchor to top; use JS-tracked visual viewport height so the game
+     card fits the available space when the soft keyboard is open.      */
   #app { align-items: flex-start; }
+
+  /* Fit exactly in the visible viewport (padding accounts for #app's 16px
+     top + bottom). Falls back to 100svh on browsers without JS support. */
+  #game-screen {
+    height: calc(var(--visual-vh, 100svh) - 32px);
+  }
+
+  /* Scroll the content within the card rather than the whole page */
+  .game-main {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Keep the input pinned at the bottom of the scrollable card */
+  .input-area {
+    position: sticky;
+    bottom: 0;
+    background: var(--surface);
+    padding-top: 12px;
+    z-index: 1;
+  }
 
   .start-card { padding: 28px 20px; }
   .game-main { padding: 20px 16px 18px; }

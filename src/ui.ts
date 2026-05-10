@@ -143,7 +143,7 @@ export function renderGame(state: RoundState, engine: GameEngine): void {
   submitBtn.disabled = !isPlaying;
 
   if (isPlaying) {
-    requestAnimationFrame(() => input.focus());
+    requestAnimationFrame(() => input.focus({ preventScroll: true }));
     announce(`Level ${engine.levelIndex + 1}: type words starting with ${level.prefix}`);
   }
 }
@@ -169,7 +169,7 @@ export function animateWordAccepted(slotId: number, word: string): void {
   // Clear and re-focus input
   const input = el<HTMLInputElement>('word-input');
   input.value = '';
-  requestAnimationFrame(() => input.focus());
+  requestAnimationFrame(() => input.focus({ preventScroll: true }));
 }
 
 // ── Rejection animation ───────────────────────────────────────────────────
