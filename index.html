@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Bubbles</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Loading screen -->
+      <div id="loading-screen">
+        <div class="spinner"></div>
+        <p class="loading-text">Loading dictionary…</p>
+      </div>
+
+      <!-- Start screen -->
+      <div id="start-screen" class="hidden">
+        <div class="start-card">
+          <h1 class="game-title">Word Bubbles</h1>
+          <p class="game-subtitle">Type words starting with the prefix to fill all the bubbles before time runs out.</p>
+          <div class="difficulty-selector">
+            <label class="difficulty-label">Start difficulty</label>
+            <div class="difficulty-options">
+              <button class="diff-btn active" data-difficulty="easy">Easy</button>
+              <button class="diff-btn" data-difficulty="medium">Medium</button>
+              <button class="diff-btn" data-difficulty="hard">Hard</button>
+              <button class="diff-btn" data-difficulty="expert">Expert</button>
+            </div>
+          </div>
+          <button id="start-btn" class="btn-primary">Start Game</button>
+        </div>
+      </div>
+
+      <!-- Game screen -->
+      <div id="game-screen" class="hidden">
+        <header class="game-header">
+          <span class="header-title">Word Bubbles</span>
+          <span class="header-level">Level <span id="level-num">1</span></span>
+          <span class="header-score">Score: <span id="session-score">0</span></span>
+        </header>
+
+        <main class="game-main">
+          <div class="prefix-container">
+            <span class="prefix-label">Start with</span>
+            <div id="prefix-display" class="prefix-display" aria-label="prefix"></div>
+          </div>
+
+          <div id="bubble-grid" class="bubble-grid" role="list" aria-label="Word slots"></div>
+
+          <div class="timer-container">
+            <div id="timer-bar" class="timer-bar"></div>
+          </div>
+          <div id="timer-text" class="timer-text" aria-label="Time remaining"></div>
+
+          <div class="input-area">
+            <input
+              type="text"
+              id="word-input"
+              class="word-input"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              aria-label="Enter a word"
+              placeholder="type a word…"
+            />
+            <button id="submit-btn" class="btn-submit">Submit</button>
+          </div>
+        </main>
+
+        <!-- End card overlay -->
+        <div id="end-card" class="end-card hidden" role="dialog" aria-modal="true">
+          <div class="end-card-inner">
+            <div id="end-icon" class="end-icon"></div>
+            <h2 id="end-title" class="end-title"></h2>
+            <div id="end-stats" class="end-stats"></div>
+            <div id="end-actions" class="end-actions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARIA live region for screen reader announcements -->
+    <div id="announcement" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
