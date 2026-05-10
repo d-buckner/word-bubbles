@@ -62,6 +62,7 @@ body {
 /* ── App wrapper ───────────────────────────────────────────────────────── */
 #app {
   min-height: 100vh;
+  min-height: 100dvh; /* dynamically updates when soft keyboard appears */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -517,6 +518,9 @@ body {
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
+  /* Anchor content to top — prevents layout shift when soft keyboard opens */
+  #app { align-items: flex-start; }
+
   .start-card { padding: 28px 20px; }
   .game-main { padding: 20px 16px 18px; }
   .game-header { padding: 12px 16px; }
